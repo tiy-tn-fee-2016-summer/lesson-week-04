@@ -34,9 +34,11 @@
   <script type="text/javascript">
     var app = require('index');
 
-    var counter = document.querySelector('.counter');
+    var counter = document.querySelectorAll('.counter');
 
-    app(counter);
+    for (var i = 0; i < counter.length; i++) {
+      app(counter[i]);
+    }
   </script>
 </body>
 </html>
