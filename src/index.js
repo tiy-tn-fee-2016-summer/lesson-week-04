@@ -3,18 +3,24 @@ export default function (app) {
   const downBtn = app.querySelector('.btn--down');
   const countElement = app.querySelector('.counter__count');
 
-  function upClick() {
-    // Do something we can know this works?
-    const oldNumber = parseInt(countElement.innerText, 10);
+  let number = 1;
 
-    countElement.innerText = oldNumber + 1;
+  function update() {
+    countElement.innerText = number;
+  }
+
+  function upClick() {
+    // number ++;
+    // number += 1;
+    number = number + 1;
+    update();
   }
 
   function downClick() {
-    // Do something we can know this works?
-    const oldNumber = parseInt(countElement.innerText, 10);
-
-    countElement.innerText = oldNumber - 1;
+    // number --;
+    // number -= 1;
+    number = number - 1;
+    update();
   }
 
   upBtn.addEventListener('click', upClick);
