@@ -1,10 +1,12 @@
 export default function (app) {
   const upBtn = app.querySelector('.btn--up');
-  const number = app.querySelector('.counter__count');
+  const countElement = app.querySelector('.counter__count');
 
   function upClick() {
     // Do something we can know this works?
-    number.innerText = 'Changed';
+    const oldNumber = parseInt(countElement.innerText, 10);
+
+    countElement.innerText = oldNumber + 1;
   }
 
   upBtn.addEventListener('click', upClick);
