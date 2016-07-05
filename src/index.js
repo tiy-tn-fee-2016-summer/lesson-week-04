@@ -37,7 +37,7 @@ export default function (app) {
       console.log(data);
       charInfo.innerHTML = `
         <h2>${data.name}</h2>
-        <ul className="movie-list"></ul>
+        <ul class="movie-list"></ul>
       `;
     });
 }
