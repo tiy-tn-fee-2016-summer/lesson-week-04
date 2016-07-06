@@ -1,34 +1,43 @@
 export default function (app) {
-  // Establishing HTML elements in our component
-  const elements = {
-    upBtn: app.querySelector('.btn--up'),
-    downBtn: app.querySelector('.btn--down'),
-    count: app.querySelector('.counter__count'),
-    charInfo: app.querySelector('.character-info'),
+  return {
+    // Establishing HTML elements in our component
+    elements: {
+      upBtn: app.querySelector('.btn--up'),
+      downBtn: app.querySelector('.btn--down'),
+      count: app.querySelector('.counter__count'),
+      charInfo: app.querySelector('.character-info'),
+    },
+
+    // Defining the Data for our component
+    data: {
+      number: 1,
+    },
+
+    update() {
+      this.elements.count.innerText = this.data.number;
+    },
+
+    actions: {
+      up() {
+        console.log(this);
+        this.data.number ++;
+        this.update();
+      },
+      down() {
+        this.data.number --;
+        this.update();
+      },
+    },
+
+    setup() {
+      const currentComponent = this;
+
+      // We need to `bind` our event listeners so they act on our current component
+      // instead of the button where the event is fired!
+      this.elements.upBtn.addEventListener('click', this.actions.up.bind(currentComponent));
+      this.elements.downBtn.addEventListener('click', this.actions.down.bind(currentComponent));
+    },
   };
-
-  let number = 1;
-
-  function update() {
-    elements.count.innerText = number;
-  }
-
-  function upClick() {
-    // number ++;
-    // number += 1;
-    number = number + 1;
-    update();
-  }
-
-  function downClick() {
-    // number --;
-    // number -= 1;
-    number = number - 1;
-    update();
-  }
-
-  elements.upBtn.addEventListener('click', upClick);
-  elements.downBtn.addEventListener('click', downClick);
 
   // Go ask for info from this URL
   fetch('https://swapi.co/api/people/1')
