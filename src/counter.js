@@ -3,8 +3,9 @@ export default class Counter {
     // Show the number to the user
     this.elements.count.innerText = this.data.number;
 
-    // Look to see if the character is loaded and has a name
-    if (this.data.character && this.data.character.name) {
+    if (this.data.isLoading) {
+      this.elements.charInfo.innerHTML = '<span class="fa fa-spinner fa-spin fa-3x fa-fw"></span>';
+    } else if (this.data.character && this.data.character.name) {
       this.elements.charInfo.innerHTML = `<h2>${this.data.character.name}</h2>`;
     } else {
       this.elements.charInfo.innerHTML = '<h2>No character found... Try again...</h2>';
@@ -24,6 +25,7 @@ export default class Counter {
   }
 
   lookupCurrentCharacter() {
+    this.data.isLoading = true;
     this.lookupCharacter(this.data.number);
   }
 
@@ -31,6 +33,7 @@ export default class Counter {
     fetch(`https://jsonp.afeld.me/?url=https://anapioficeandfire.com/api/characters/${characterId}`)
       .then((res) => res.json())
       .then((character) => {
+        this.data.isLoading = false;
         this.data.character = character;
         this.update();
       });
