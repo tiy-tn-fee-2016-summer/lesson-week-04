@@ -43,9 +43,7 @@
     var counter = document.querySelectorAll('.app');
 
     for (var i = 0; i < counter.length; i++) {
-      var component = app(counter[i]);
-      component.update();
-      component.setup();
+      app(counter[i]);
     }
   </script>
 </body>
