@@ -1,13 +1,16 @@
 export default function (app) {
-  const upBtn = app.querySelector('.btn--up');
-  const downBtn = app.querySelector('.btn--down');
-  const countElement = app.querySelector('.counter__count');
-  const charInfo = app.querySelector('.character-info');
+  // Establishing HTML elements in our component
+  const elements = {
+    upBtn: app.querySelector('.btn--up'),
+    downBtn: app.querySelector('.btn--down'),
+    count: app.querySelector('.counter__count'),
+    charInfo: app.querySelector('.character-info'),
+  };
 
   let number = 1;
 
   function update() {
-    countElement.innerText = number;
+    elements.count.innerText = number;
   }
 
   function upClick() {
@@ -24,8 +27,8 @@ export default function (app) {
     update();
   }
 
-  upBtn.addEventListener('click', upClick);
-  downBtn.addEventListener('click', downClick);
+  elements.upBtn.addEventListener('click', upClick);
+  elements.downBtn.addEventListener('click', downClick);
 
   // Go ask for info from this URL
   fetch('https://swapi.co/api/people/1')
@@ -35,7 +38,7 @@ export default function (app) {
     .then((data) => {
       // how do i know what data is???
       console.log(data);
-      charInfo.innerHTML = `
+      elements.charInfo.innerHTML = `
         <h2>${data.name}</h2>
         <ul class="movie-list"></ul>
       `;
