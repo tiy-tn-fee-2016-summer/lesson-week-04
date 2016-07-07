@@ -6,11 +6,31 @@
   <link rel="stylesheet" href="/app.css">
 </head>
 <body>
+  <div class="nasa-info">
+    <input type="number" value="1000">
+
+    <div class="camera-pics">
+      <figure class="mars-pic">
+        <div class="mars-pic__frame">
+          <img class="mars-pic__img" src="http://mars.jpl.nasa.gov/msl-raw-images/proj/msl/redops/ods/surface/sol/01000/opgs/edr/ncam/NLB_486264973EDR_S0481570NCAM00546M_.JPG" alt="">
+        </div>
+        <figcaption class="mars-pic__cap">
+          <span class="mars-pic__date">2015-05-30</span>
+          -
+          <span class="mars-pic__cam">Navigation Camera</span>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
 
   <script src="/vendor.js" charset="utf-8"></script>
   <script src="/app.js" charset="utf-8"></script>
 
   <script type="text/javascript">
+    var nasaInfo = document.querySelector('.nasa-info');
+
+    var app = require('index');
+    app(nasaInfo);
   </script>
 </body>
 </html>
