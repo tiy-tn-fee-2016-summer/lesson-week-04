@@ -1,3 +1,5 @@
+import MarsPic from 'mars-pic';
+
 const apiKey = '38VtCpX1mPNRhv3Yp4Wm6rwK0Mltw2Yo9Pks0dO0';
 const parseJSON = (res) => res.json();
 
@@ -15,19 +17,10 @@ export default class Nasa {
 
     for (let i = 0; i < results.photos.length; i++) {
       // Create a new element
-      const pic = results.photos[i];
-      const foo = document.createElement('figure');
-      this.smallerPieces.picsList.appendChild(foo);
-      foo.innerHTML = `
-      <div class="mars-pic__frame">
-        <img class="mars-pic__img" src="${pic.img_src}" alt="">
-      </div>
-      <figcaption class="mars-pic__cap">
-        <span class="mars-pic__date">${pic.earth_date}</span>
-        -
-        <span class="mars-pic__cam">${pic.camera.full_name}</span>
-      </figcaption>`;
+      const pic = new MarsPic(results.photos[i]);
+
       // Add it to the existing list?
+      this.smallerPieces.picsList.appendChild(pic.element);
     }
   }
 
